@@ -15,7 +15,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(FetchContent)
 FetchContent_Declare(Hall
-    GIT_REPOSITORY /home/jonathan/Projekte/Hans_Hall
+    GIT_REPOSITORY https://github.com/byter64/Hall.git
     GIT_TAG main
 )
 
