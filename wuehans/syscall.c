@@ -7,10 +7,11 @@
 
 void *__dso_handle = 0;
 
-const TCHAR STDOUT[30] = "stdout.log";
-const TCHAR STDERR[30] = "stderr.log";
-FIL fp;
-FATFS FatFs;
+const TCHAR STDOUT[30] = "stdout.txt";
+const TCHAR STDERR[30] = "stderr.txt";
+
+FIL fp = {0};
+FATFS FatFs = {0};
 BYTE is_mounted = 0;
 
 struct FD_Data {
@@ -31,20 +32,27 @@ int _write(int fd, char *ptr, int len) {
   // stdout
   if (fd == 1) {
 
-    FRESULT fr = f_open(&fp, STDOUT, FA_WRITE);
+    FIL write_file;
+    FRESULT fr = f_open(&write_file, STDOUT, FA_OPEN_APPEND | FA_WRITE);
     if (fr != 0) {
       return fr;
     }
 
     UINT written = 0;
 
-    fr = f_write(&fp, ptr, len, &written);
+    fr = f_write(&write_file, ptr, len, &written);
     if (fr != 0) {
       // TODO: Set errno
       return -1;
     }
 
-    f_close(&fp);
+    f_close(&write_file);
+
+    // HACK: Hackermann
+    volatile int* x = (int*) 0x80000000;
+    int b = *x;
+    // HACK: Hackermann Ende
+
     return written;
   } else if (fd > 2 && (fd-3) < FILE_AMOUNT && fd_data[fd-3].is_open) {
     UINT bw = 0;
@@ -85,7 +93,7 @@ void *_sbrk(int incr) {
   return prev_heap;
 }
 
-int _fstat([[maybe_unused]] int fd, struct stat *st) {
+int _fstat(int fd, struct stat *st) {
   st->st_mode = S_IFREG;
   /* ScreenPrint("_fstat"); */
   return 0;
@@ -122,7 +130,7 @@ int _lseek(int fd, int offset, int whence) {
   return result;
 }
 
-int _open(const char *name, [[maybe_unused]] int flags, int mode) {
+int _open(const char *name, int flags, int mode) {
   if (is_mounted == 0) {
     f_mount(&FatFs, "", 0);
     is_mounted = 1;
@@ -158,19 +166,19 @@ int _close(int fd) {
   return -1;
 }
 
-int _isatty([[maybe_unused]] int fd) 
+int _isatty(int fd)
 { 
   errno = ENOTTY;
   /* ScreenPrint("isatty"); */
   return 0; 
 }
 
-void _exit([[maybe_unused]] int status) {
+void _exit(int status) {
   while (1) {
   }
 }
 
-int _kill([[maybe_unused]] int pid, [[maybe_unused]] int sig) {
+int _kill(int pid, int sig) {
   errno = EINVAL;
   return -1;
 }

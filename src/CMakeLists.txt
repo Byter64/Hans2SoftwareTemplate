@@ -25,9 +25,9 @@ add_link_options(
   -fno-builtin
 )
 
-add_executable (test.elf)
+add_executable (firmware.elf)
 
-target_include_directories(test.elf
+target_include_directories(firmware.elf
   # PUBLIC SYSTEM ${WUEHANS_ROOT}/include/libstdc++
   # PUBLIC SYSTEM ${WUEHANS_ROOT}/include/libstdc++/riscv32-unknown-elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/include/newlib
@@ -36,7 +36,7 @@ target_include_directories(test.elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
 )
 
-target_link_libraries(test.elf
+target_link_libraries(firmware.elf
   ${WUEHANS_ROOT}/lib/newlib/libc.a
   ${WUEHANS_ROOT}/lib/newlib/libg.a
   ${WUEHANS_ROOT}/lib/newlib/libgloss.a
@@ -48,15 +48,16 @@ target_link_libraries(test.elf
   Hall
 )
 
-target_sources(test.elf PUBLIC
+target_sources(firmware.elf PUBLIC
   PUBLIC ${WUEHANS_ROOT}/wuehans/start.S
   PUBLIC ${WUEHANS_ROOT}/wuehans/syscall.c
-  "test.cpp"
+
+  "main.cpp"
 )
 
-add_custom_command(TARGET test.elf POST_BUILD
-  COMMAND objcopy ARGS -O verilog test.elf test.hex)
+# add_custom_command(TARGET firmware.elf POST_BUILD
+#   COMMAND objcopy ARGS -O verilog firmware.elf test.hex)
 
-add_custom_command(TARGET test.elf POST_BUILD
-  COMMAND python ARGS ${WUEHANS_ROOT}/tools/hex8tohex32.py test.hex > test32.hex
-)
+# add_custom_command(TARGET firmware.elf POST_BUILD
+#   COMMAND python ARGS ${WUEHANS_ROOT}/tools/hex8tohex32.py test.hex > test32.hex
+# )
