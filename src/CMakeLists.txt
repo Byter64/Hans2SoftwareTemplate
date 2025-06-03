@@ -12,6 +12,7 @@ add_compile_options(
   -ffreestanding
   -Bstatic
   -nostdinc
+  -fno-builtin
 )
 
 add_link_options(
@@ -21,14 +22,16 @@ add_link_options(
   -ffreestanding
   -Bstatic
   -nostdlib
-  # -nostartfiles
+  -fno-builtin
 )
 
 add_executable (test.elf)
 
-include_directories(test.elf
-  PUBLIC SYSTEM ${WUEHANS_ROOT}/include
+target_include_directories(test.elf
+  # PUBLIC SYSTEM ${WUEHANS_ROOT}/include/libstdc++
+  # PUBLIC SYSTEM ${WUEHANS_ROOT}/include/libstdc++/riscv32-unknown-elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/include/newlib
+  PUBLIC SYSTEM ${WUEHANS_ROOT}/include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
 )
@@ -38,9 +41,11 @@ target_link_libraries(test.elf
   ${WUEHANS_ROOT}/lib/newlib/libg.a
   ${WUEHANS_ROOT}/lib/newlib/libgloss.a
   ${WUEHANS_ROOT}/lib/newlib/libm.a
+  ${WUEHANS_ROOT}/lib/newlib/libgcc.a
+  # ${WUEHANS_ROOT}/lib/libstdc++.a
+  # ${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
   Hall
-  # Graphic_Hans_API
 )
 
 target_sources(test.elf PUBLIC

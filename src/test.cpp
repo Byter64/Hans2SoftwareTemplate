@@ -1,5 +1,6 @@
-#include <string.h>
 #include <Hall/Hall.h>
+#include <string.h>
+#include <math.h>
 
 class My_cool_class {
 public:
@@ -14,9 +15,7 @@ public:
 
 int main() {
   volatile int *a = (volatile int *)0x1234;
-  *a = 100;
-
-  // Hall::Draw()
+  *a = pow(2,20);
 
   return 0;
 }
