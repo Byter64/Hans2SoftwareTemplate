@@ -25,16 +25,16 @@ add_link_options(
   -fno-builtin
 )
 
-add_executable (firmware.elf)
+add_executable (Game.elf)
 
-target_include_directories(firmware.elf
+target_include_directories(Game.elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
 )
 
-target_link_libraries(firmware.elf
+target_link_libraries(Game.elf
   ${WUEHANS_ROOT}/lib/newlib/libc.a
   ${WUEHANS_ROOT}/lib/newlib/libg.a
   ${WUEHANS_ROOT}/lib/newlib/libgloss.a
@@ -44,7 +44,7 @@ target_link_libraries(firmware.elf
   Hall
 )
 
-target_sources(firmware.elf PUBLIC
+target_sources(Game.elf PUBLIC
   PUBLIC ${WUEHANS_ROOT}/wuehans/start.S
   PUBLIC ${WUEHANS_ROOT}/wuehans/syscall.c
 
