@@ -28,12 +28,12 @@ add_link_options(
 add_executable (Game.elf)
 
 target_include_directories(Game.elf
-  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++/riscv32-unknown-elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
+  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib # This needs to be after libstdc++ because of include_nexts - JH
 )
 
 target_link_libraries(Game.elf
