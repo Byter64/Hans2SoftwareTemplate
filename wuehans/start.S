@@ -50,4 +50,5 @@ sw zero,8(sp)
 sw zero,12(sp)
 
 /* jump to libc init */
-j _Z4mainv
+// j _Z4mainv
+j main

@@ -2,6 +2,7 @@
 #include <fatfs/ff.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
 typedef struct Timo {
   int int1;
@@ -26,6 +27,13 @@ int main() {
 
   // UINT br;
   // f_read(&image_file, data, 400*240, &br);
+
+  std::vector<int> hallo{1, 2, 3, 4, 5};
+  hallo.push_back(6);
+  hallo.push_back(7);
+  for (int i : hallo) {
+    printf("%d\n", i);
+  }
 
   Timo *t1 = (Timo *)malloc(sizeof(Timo));
   Timo *t2 = (Timo *)malloc(sizeof(Timo));

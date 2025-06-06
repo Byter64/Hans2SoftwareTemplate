@@ -9,7 +9,7 @@ add_compile_options(
   -fno-rtti
   -march=rv32im
   -Os
-  -ffreestanding
+  # -ffreestanding
   -Bstatic
   -nostdinc
   -fno-builtin
@@ -19,7 +19,7 @@ add_link_options(
   -nostdlib
   -T ${WUEHANS_LINKERSCRIPT}
   -Wl,--gc-sections
-  -ffreestanding
+  # -ffreestanding
   -Bstatic
   -nostdlib
   -fno-builtin
@@ -29,6 +29,8 @@ add_executable (Game.elf)
 
 target_include_directories(Game.elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib
+  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
+  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++/riscv32-unknown-elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
@@ -40,6 +42,8 @@ target_link_libraries(Game.elf
   ${WUEHANS_ROOT}/lib/newlib/libgloss.a
   ${WUEHANS_ROOT}/lib/newlib/libm.a
   ${WUEHANS_ROOT}/lib/newlib/libgcc.a
+  ${WUEHANS_ROOT}/lib/libstdc++.a
+  ${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
   Hall
 )
