@@ -82,7 +82,7 @@ void *_sbrk(int incr) {
   }
   prev_heap = heap;
 
-  if ((int)heap + incr < heap_begin + HEAP_SIZE) {
+  if ((int)heap + incr < (int) &heap_begin + HEAP_SIZE) {
     heap += incr;
   }
 
