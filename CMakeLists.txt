@@ -14,6 +14,29 @@ FetchContent_Declare(Hall
     GIT_TAG main
 )
 
+add_compile_options(
+  -fno-exceptions
+  -nostdlib
+  -fno-unwind-tables
+  -fno-rtti
+  -march=rv32imf
+  -Os
+  # -ffreestanding
+  -Bstatic
+  -nostdinc
+  -fno-builtin
+)
+
+add_link_options(
+  -nostdlib
+  -T ${WUEHANS_LINKERSCRIPT}
+  -Wl,--gc-sections
+  # -ffreestanding
+  -Bstatic
+  -nostdlib
+  -fno-builtin
+)
+
 add_subdirectory(lib)
 FetchContent_MakeAvailable(Hall)
 
