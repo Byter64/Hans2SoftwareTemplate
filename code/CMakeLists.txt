@@ -2,29 +2,6 @@ cmake_minimum_required(VERSION 3.24.0)
 enable_language(C CXX ASM)
 project("Cool game")
 
-add_compile_options(
-  -fno-exceptions
-  -nostdlib
-  -fno-unwind-tables
-  -fno-rtti
-  -march=rv32imf
-  -Os
-  # -ffreestanding
-  -Bstatic
-  -nostdinc
-  -fno-builtin
-)
-
-add_link_options(
-  -nostdlib
-  -T ${WUEHANS_LINKERSCRIPT}
-  -Wl,--gc-sections
-  # -ffreestanding
-  -Bstatic
-  -nostdlib
-  -fno-builtin
-)
-
 add_executable (Game.elf)
 
 target_include_directories(Game.elf
