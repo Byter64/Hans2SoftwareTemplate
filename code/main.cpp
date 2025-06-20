@@ -10,7 +10,7 @@ int main()
 		while (Hall::GetIsGPUBusy());		//Wait for the GPU until it finished the last draw call
 
 
-		bool vSync = Hall::GetVSync();
+		bool vSync = false;
 		bool newVSync = false;
 		while(!(!vSync && newVSync)) 		//Wait until vSync == false and newVsync == true
 		{									//Sidenote: This way of swapping the framebuffer vsyncs your game
