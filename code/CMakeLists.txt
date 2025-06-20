@@ -7,7 +7,7 @@ add_compile_options(
   -nostdlib
   -fno-unwind-tables
   -fno-rtti
-  -march=rv32im
+  -march=rv32imf
   -Os
   # -ffreestanding
   -Bstatic
