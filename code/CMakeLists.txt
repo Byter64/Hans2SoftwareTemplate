@@ -38,5 +38,5 @@ target_sources(Game.elf PUBLIC
 #	COMMAND objcopy ARGS -O verilog game.elf game.hex)
 #
 # add_custom_command(TARGET game.elf POST_BUILD
-#	COMMAND python ARGS ${WUEHANS_ROOT}/tools/hex8tohex32.py game.hex > game32.hex
+#	COMMAND python ARGS ${WUEHANS_ROOT}/wuehans/hex8tohex32.py game.hex > game32.hex
 #)
