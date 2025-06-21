@@ -14,7 +14,7 @@ int main()
 		bool newVSync = false;
 		while(!(!vSync && newVSync)) 		//Wait until vSync == false and newVsync == true
 		{									//Sidenote: This way of swapping the framebuffer vsyncs your game
-			vSync = newVsync;
+			vSync = newVSync;
 			newVSync = Hall::GetVSync();
 		}
 		
