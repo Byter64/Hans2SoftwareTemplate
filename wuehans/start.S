@@ -51,5 +51,5 @@ sw zero,12(sp)
 
 /* jump to libc init */
 /* main did not work for me? ~ Yannik*/
-j _Z4mainv
-//j main
+//j _Z4mainv
+j main
