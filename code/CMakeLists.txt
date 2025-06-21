@@ -34,9 +34,9 @@ target_sources(Game.elf PUBLIC
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)
-# add_custom_command(TARGET game.elf POST_BUILD
-#	COMMAND objcopy ARGS -O verilog game.elf game.hex)
+# add_custom_command(TARGET Game.elf POST_BUILD
+#	COMMAND objcopy ARGS -O verilog Game.elf Game.hex)
 #
-# add_custom_command(TARGET game.elf POST_BUILD
-#	COMMAND python ARGS ${WUEHANS_ROOT}/wuehans/hex8tohex32.py game.hex > game32.hex
+# add_custom_command(TARGET Game.elf POST_BUILD
+#	COMMAND python ARGS ${WUEHANS_ROOT}/wuehans/hex8tohex32.py Game.hex > Game32.hex
 #)
