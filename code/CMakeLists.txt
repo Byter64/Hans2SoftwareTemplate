@@ -32,3 +32,11 @@ target_sources(Game.elf PUBLIC
   # Add your .cpp files here
   "main.cpp"
 )
+
+# This is stuff for debugging the hardware. Just ignore it :)
+# add_custom_command(TARGET game.elf POST_BUILD
+#	COMMAND objcopy ARGS -O verilog game.elf game.hex)
+#
+# add_custom_command(TARGET game.elf POST_BUILD
+#	COMMAND python ARGS ${WUEHANS_ROOT}/tools/hex8tohex32.py game.hex > game32.hex
+#)
