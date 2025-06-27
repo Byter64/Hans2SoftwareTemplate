@@ -1,0 +1,17 @@
+# Rule to invoke ninja in a subdirectory
+rule build_all
+  command = ninja -C $dir
+  description = Building $dir
+
+# Build targets for each subdirectory
+build build_Desktop: build_all
+  dir = Desktop
+
+build build_wueHans: build_all
+  dir = wueHans
+
+# Aggregate target to build both
+build all: phony build_Desktop build_wueHans
+
+# Default target
+default all
