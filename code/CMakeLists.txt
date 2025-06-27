@@ -36,15 +36,22 @@ if(NOT DESKTOPBUILD)
   PUBLIC ${WUEHANS_ROOT}/wuehans/syscall.c
   )
 
+else()
+  target_link_libraries(${FINAL_TARGET}
+  Hall_Desktop
+  )
 endif()
 
 target_include_directories(${FINAL_TARGET}
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
 )
 
-target_link_libraries(${FINAL_TARGET}
-  Hall_Desktop
-)
+#███████████████████████████████████████████████████████████
+#███████████████████████████████████████████████████████████
+#█████████████ Below starts your realm █████████████████████
+#███████████████████████████████████████████████████████████
+#███████████████████████████████████████████████████████████
+
 
 target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
