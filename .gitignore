@@ -3,9 +3,11 @@
 *.log
 tmp/
 
-/build/*
+build/*
 !build/build.ninja
-!build/wueHans/
+!build/wueHans
+build/wueHans/*
 !build/wueHans/dummy.txt
-!build/Desktop/
+!build/Desktop
+build/Desktop/*
 !build/Desktop/dummy.txt
