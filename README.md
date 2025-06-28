@@ -30,10 +30,13 @@ Go to this Github repo and download it (we recommend to not clone it, but to rat
 ## Setup the Template
 Open a command line and execute the following:
 ```bash
-cd blaaa/Hans2SoftwareTemplate/build
-cmake .. -G Ninja
+cd blaaa/Hans2SoftwareTemplate/build/Desktop
+cmake ../.. -G Ninja -DDESKTOPBUILD=ON
+cd ../wueHans
+cmake ../.. -G Ninja
 ```
-This initialises the build folder, in which cmake and ninja will throw the build files.
+This initialises the build folder, in which cmake and ninja will throw in the build files. Desktop contains the desktop version which should run on your PC, while wueHans contains the wueHans build.
+> 💡 **_Good To Know_**: You can build both the desktop and wueHans version by calling "Ninja" from Hans2SoftwareTemplate/build
 
 # Template Structure
 #### build/
