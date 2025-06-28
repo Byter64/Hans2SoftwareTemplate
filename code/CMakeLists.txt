@@ -63,7 +63,7 @@ target_include_directories(${FINAL_TARGET}
 
 target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
-  "main.cpp"
+  "source/main.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)
