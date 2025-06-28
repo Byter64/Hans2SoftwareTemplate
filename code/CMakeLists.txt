@@ -11,9 +11,10 @@ endif()
 add_executable(${FINAL_TARGET})
 
 add_custom_target(copy_assets
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_SOURCE_DIR}/../cmake/cmake_copy.cmake
 )
 add_dependencies(${FINAL_TARGET} copy_assets)
+
 
 #libstdc++ is not working properly currently. I would like to try out libc++, 
 #I just need to get it compiled :(
