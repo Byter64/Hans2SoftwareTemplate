@@ -15,15 +15,15 @@ project("WueHans Template Game")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(FetchContent)
-FetchContent_Declare(Hall
-    GIT_REPOSITORY https://github.com/byter64/Hall.git
-    GIT_TAG main
+FetchContent_Declare(Halib
+    GIT_REPOSITORY https://github.com/byter64/Halib.git
+    GIT_TAG develop
 )
 
 if(NOT DESKTOPBUILD)
 	add_subdirectory(lib)
 endif()
-FetchContent_MakeAvailable(Hall)
+FetchContent_MakeAvailable(Halib)
 
 if(NOT DESKTOPBUILD)
 	add_compile_options(
