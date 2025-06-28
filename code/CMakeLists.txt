@@ -35,7 +35,7 @@ if(NOT DESKTOPBUILD)
   #${WUEHANS_ROOT}/lib/libstdc++.a
   #${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
-  Hall
+  Halib
   )
 
   target_sources(${FINAL_TARGET} PUBLIC
@@ -46,7 +46,7 @@ if(NOT DESKTOPBUILD)
 
 else()
   target_link_libraries(${FINAL_TARGET}
-  Hall_Desktop
+  Halib_Desktop
   )
 endif()
 
