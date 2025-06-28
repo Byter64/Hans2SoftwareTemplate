@@ -33,7 +33,7 @@ if(NOT DESKTOPBUILD)
 	  -fno-rtti
 	  -march=rv32im
 	  -Os
-	  # -ffreestanding
+	  -ffreestanding
 	  -Bstatic
 	  -nostdinc
 	  -fno-builtin
@@ -43,7 +43,7 @@ if(NOT DESKTOPBUILD)
 	  -nostdlib
 	  -T ${WUEHANS_LINKERSCRIPT}
 	  -Wl,--gc-sections
-	  # -ffreestanding
+	  -ffreestanding
 	  -Bstatic
 	  -nostdlib
 	  -fno-builtin

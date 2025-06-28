@@ -10,10 +10,12 @@ endif()
 
 add_executable(${FINAL_TARGET})
 
+#libstdc++ is not working properly currently. I would like to try out libc++, 
+#I just need to get it compiled :(
 if(NOT DESKTOPBUILD)
   target_include_directories(${FINAL_TARGET}
-  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
-  PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++/riscv32-unknown-elf
+  #PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
+  #PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++/riscv32-unknown-elf
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib # This needs to be after libstdc++ because of include_nexts - JH
@@ -25,8 +27,8 @@ if(NOT DESKTOPBUILD)
   ${WUEHANS_ROOT}/lib/newlib/libgloss.a
   ${WUEHANS_ROOT}/lib/newlib/libm.a
   ${WUEHANS_ROOT}/lib/newlib/libgcc.a
-  ${WUEHANS_ROOT}/lib/libstdc++.a
-  ${WUEHANS_ROOT}/lib/libsupc++.a
+  #${WUEHANS_ROOT}/lib/libstdc++.a
+  #${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
   Hall
   )
