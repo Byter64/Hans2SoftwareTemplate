@@ -1,25 +1,24 @@
-#include <Hall/Hall.h>
+#include "Halib/Graphic.h"
+#include "Halib/System.h"
 
 
 int main() 
 {
+	Halib::Init();
+
+
 	//This is your game loop. The program should never leave it.
-	while(true) 
+	while(!Halib::GetShouldClose()) 
 	{
-		Hall::Clear(0b0100001000000001); 	//Clear the screen to R5G5B5A1(16, 16, 0, 1) or in RGBA8: (131, 131, 0, 255)
-		while (Hall::GetIsGPUBusy());		//Wait for the GPU until it finished the last draw call
+		//Clear the screen. 
+		//IMPORTANT: We have 5 bit per color channel, so the maximum value is 31
+		//Alpha is either true (visible) or false (transparent)
+		Halib::Clear(Halib::Color(15, 15, 0, true));
 
-
-		bool vSync = false;
-		bool newVSync = false;
-		while(!(!vSync && newVSync)) 		//Wait until vSync == false and newVsync == true
-		{									//Sidenote: This way of swapping the framebuffer vsyncs your game
-			vSync = newVSync;
-			newVSync = Hall::GetVSync();
-		}
-		
-		Hall::SetCommandSwapBuffers();		//Swap the frame buffers so that your bewritten frame is shown
-
+		//Show the changes that you made to the screen
+		//This also blocks until the vsync 
+		Halib::Show();
 	}
+	
 	return 0;
 }
