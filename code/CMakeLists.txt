@@ -46,10 +46,14 @@ if(NOT DESKTOPBUILD)
   PUBLIC ${WUEHANS_ROOT}/wuehans/syscall.c
   )
 
+  target_compile_definitions(${FINAL_TARGET} PRIVATE WUEHANS)
+
 else()
   target_link_libraries(${FINAL_TARGET}
   Halib_Desktop
   )
+
+  target_compile_definitions(${FINAL_TARGET} PRIVATE DESKTOP)
 endif()
 
 target_include_directories(${FINAL_TARGET}
