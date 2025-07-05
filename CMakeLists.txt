@@ -17,7 +17,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(FetchContent)
 FetchContent_Declare(Halib
     GIT_REPOSITORY https://github.com/byter64/Halib.git
-    GIT_TAG develop
+    GIT_TAG main
+    #GIT_TAG develop #For the devs only :)
 )
 
 if(NOT DESKTOPBUILD)
