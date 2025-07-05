@@ -25,12 +25,12 @@ clang: error: no input files
 Clang can be downloaded with your preferred package manager (example shown with ???). After download, make sure that the binaries are within your path.
 
 ## Download the Software Template
-Go to this Github repo and download it (we recommend to not clone it, but to rather download it and move it into your own game repo manually). [Hans 2 Software Template](https://github.com/Byter64/Hans2SoftwareTemplate/tree/main). Feel free to rename this folder to match your project's name, but don't forget to adjust the commands in the next section.
+Go to this Github repo and press the "Use this template" button to create a new repository. This creates a repository on your account that has all the content of the [Hans 2 Software Template](https://github.com/Byter64/Hans2SoftwareTemplate/tree/main) repo in it. Now, clone the repository to your computer. Remember to adjust the commands in the next section to your repositories name.
 
 ## Setup the Template
 Open a command line and execute the following:
 ```bash
-cd blaaa/Hans2SoftwareTemplate/build/Desktop
+cd blaaa/YourRepository/build/Desktop
 cmake ../.. -G Ninja -DDESKTOPBUILD=ON
 cd ../wueHans
 cmake ../.. -G Ninja
@@ -62,7 +62,7 @@ A target is a file, that is built by clang. The template lets clang generate exa
 # Building the Project
 If you want to build the projectv open a command line and execute the following:
 ```bash
-cd blaaa/Hans2SoftwareTemplate/build
+cd blaaa/YourRepository/build
 ninja
 ```
 If you have only added new source files in CMake, this should build the project and result in an executable file called build/code/game.elf.
