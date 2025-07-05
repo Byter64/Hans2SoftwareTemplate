@@ -46,6 +46,9 @@ This initialises the build folder, in which cmake and ninja will throw in the bu
 ## Using Visual Studio Code
 (muss noch den Matthias fragen)
 
+## Distinguish between Desktop and wuehans
+If the have code, that should only be included in either the desktop build or the wueHans build, you can use the precprocessor macros #ifdef ... #endif with the symbols **WUEHANS** and **DESKTOP**. The desktop build will only have the **DESKTOP**, while the wueHans build will only have **WUEHANS** symbol defined.
+
 # Template Structure
 #### build/
 This directory will contain your built project
