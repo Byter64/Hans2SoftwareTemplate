@@ -8,6 +8,9 @@ else()
   set(FINAL_TARGET game)
 endif()
 
+set(CMAKE_CXX_STANDARD 20)
+set(CXX_STANDARD_REQUIRED ON)
+
 add_executable(${FINAL_TARGET})
 
 add_custom_target(copy_assets
@@ -71,6 +74,7 @@ target_include_directories(${FINAL_TARGET}
 target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
   "source/main.cpp"
+  "source/Character.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)

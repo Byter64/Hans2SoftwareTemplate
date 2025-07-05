@@ -1,23 +1,27 @@
+#include <memory>
 #include "Halib/Graphic.h"
 #include "Halib/System.h"
-
+#include "Character.h"
 
 int main() 
 {
 	Halib::Init();
 
+	//Create a player and add it to the system.
+	//Entities will only be updated and drawn, when they have been added via AddEntity(...)
+	std::shared_ptr<Character> player = std::make_shared<Character>(50.0f);
+	Halib::AddEntity(player);
 
-	//This is your game loop. The program should never leave it.
+	//We have 5 Bits per color channel, so 31 is the max value
+	Halib::rendersystem.backgroundColor = Halib::Color(15, 0, 24);
 	while(!Halib::GetShouldClose()) 
 	{
-		//Clear the screen. 
-		//IMPORTANT: We have 5 bit per color channel, so the maximum value is 31
-		//Alpha is either true (visible) or false (transparent)
-		Halib::Clear(Halib::Color(15, 15, 0, true));
-
-		//Show the changes that you made to the screen
-		//This also blocks until the vsync 
-		Halib::Show();
+		//Normally, you don't need to touch this loop. Just let your classes inherit from Entity
+		//to build your game (see Character.h)
+		player->sprite.Draw(Halib::VecI2(10, 10));
+		//This updates all halibs system, including inputs, graphics and entity logic
+		//Take a look: Select Update() and press F12(?)
+		Halib::Update();
 	}
 	
 	return 0;

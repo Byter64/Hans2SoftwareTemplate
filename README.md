@@ -49,6 +49,9 @@ This initialises the build folder, in which cmake and ninja will throw in the bu
 ## Distinguish between Desktop and wuehans
 If the have code, that should only be included in either the desktop build or the wueHans build, you can use the precprocessor macros #ifdef ... #endif with the symbols **WUEHANS** and **DESKTOP**. The desktop build will only have the **DESKTOP**, while the wueHans build will only have **WUEHANS** symbol defined.
 
+## Supported file formats
+Halib only supports .bmp for images and .wav for audio. You can always include libraries that support other file formats, but keep in mind, that uncompressing data takes time, and time is a limited resource for wueHans.
+
 # Template Structure
 #### build/
 This directory will contain your built project
