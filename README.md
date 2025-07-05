@@ -1,5 +1,7 @@
+# Disclaimer
+We only aim to have this work on Windows, Linux, and Mac. If it works on something else, then this is pure coincidence.
+
 # Setup
-We officially only support Windows and Linux. If anything else also works, then this is pure coincidence.
 
 ## The easy stuff
 You need:
@@ -39,6 +41,10 @@ This initialises the build folder, in which cmake and ninja will throw in the bu
 > 💡 **_Good To Know_**: Windows users, who want to use Visual Studio, can skip the "-G Ninja" for the Desktop build. The wueHans build **NEEDS** Ninja
 > 
 > 💡 **_Good To Know_**: You can build both the desktop and wueHans version by calling "Ninja" from Hans2SoftwareTemplate/build
+
+# Important information
+## Using Visual Studio Code
+(muss noch den Matthias fragen)
 
 # Template Structure
 #### build/
