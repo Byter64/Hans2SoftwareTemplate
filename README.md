@@ -1,7 +1,10 @@
-# Disclaimer
-We only aim to have this work on Windows, Linux, and Mac. If it works on something else, then this is pure coincidence.
+# General
+This is a template for creating software for wueHans. The template comes with a Desktop backend, which allows to use your software also on Windows/Linux/Mac (see further down).
 
 # Setup
+## Disclaimer
+We only aim to have this work on Windows, Linux, and Mac. If it works on something else, then this is pure coincidence.
+
 
 ## The easy stuff
 You need:
