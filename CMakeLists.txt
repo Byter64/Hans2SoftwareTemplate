@@ -14,17 +14,27 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project("WueHans Template Game")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+if(NOT DESKTOPBUILD)
+  include_directories(
+  SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
+  SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++/riscv32-unknown-elf
+  SYSTEM ${WUEHANS_ROOT}/system-include
+  SYSTEM ${WUEHANS_ROOT}/lib
+  SYSTEM ${WUEHANS_ROOT}/system-include/newlib # This needs to be after libstdc++ because of include_nexts - JH
+  )
+endif()
+
 include(FetchContent)
 FetchContent_Declare(Halib
     GIT_REPOSITORY https://github.com/byter64/Halib.git
     GIT_TAG main
     #GIT_TAG develop #For the devs only :)
 )
+FetchContent_MakeAvailable(Halib)
 
 if(NOT DESKTOPBUILD)
 	add_subdirectory(lib)
 endif()
-FetchContent_MakeAvailable(Halib)
 
 if(NOT DESKTOPBUILD)
 	add_compile_options(
@@ -34,7 +44,7 @@ if(NOT DESKTOPBUILD)
 	  -fno-rtti
 	  -march=rv32im
 	  -Os
-	  -ffreestanding
+	  #-ffreestanding  #Because we use libstdc++, we need to pretend that we are in a hosted environment so that gcc gives us all features of libstdc++
 	  -Bstatic
 	  -nostdinc
 	  -fno-builtin
