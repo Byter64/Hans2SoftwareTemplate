@@ -22,7 +22,6 @@
 #include <string.h>
 #include "ff.h"			/* Declarations of FatFs API */
 #include "diskio.h"		/* Declarations of device I/O functions */
-#include "../../wuehans/Debug.h"
 
 /*--------------------------------------------------------------------------
 
@@ -3674,16 +3673,13 @@ FRESULT f_mount (
 	const TCHAR* path,	/* Logical drive number to be mounted/unmounted */
 	BYTE opt			/* Mount option: 0=Do not mount (delayed mount), 1=Mount immediately */
 )
-{
-	Print("f_mount start");
-	
+{	
 	FATFS *cfs;
 	int vol;
 	FRESULT res;
 	const TCHAR *rp = path;
 
 	/* Get volume ID (logical drive number) */
-	Print("Vor get_ldnumber");
 	vol = get_ldnumber(&rp);
 	if (vol < 0) return FR_INVALID_DRIVE;
 	cfs = FatFs[vol];			/* Pointer to the filesystem object of the volume */
@@ -3719,9 +3715,7 @@ FRESULT f_mount (
 	}
 
 	if (opt == 0) return FR_OK;	/* Do not mount now, it will be mounted in subsequent file functions */
-	Print("Vor mount_volume");
 	res = mount_volume(&path, &fs, 0);	/* Force mounted the volume */
-	Print("Nach mount_volume");
 	LEAVE_FF(fs, res);
 }
 
