@@ -18,7 +18,7 @@ int main()
 	{
 		//Normally, you don't need to touch this loop. Just let your classes inherit from Entity
 		//to build your game (see Character.h)
-		player->sprite.Draw(Halib::VecI2(10, 10));
+
 		//This updates all halibs system, including inputs, graphics and entity logic
 		//Take a look: Select Update() and press F12(?)
 		Halib::Update();
