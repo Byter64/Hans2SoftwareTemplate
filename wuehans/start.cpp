@@ -1,5 +1,6 @@
 //What comes after start.s? Right, start.c
-
+#include "Debug.h"
+#include <Hall/Hall.h>
 typedef void (*constructor_t)(void);
 
 extern unsigned int _sbss;
@@ -37,10 +38,25 @@ int main();
 
 void _main()
 {
+    Hall::Clear(0b1111111111111111);
+    while(Hall::GetIsGPUBusy());
+    Hall::SetCommandSwapBuffers();
+
+    Hall::Clear(0b1111111111111111);
+    while(Hall::GetIsGPUBusy());
+    Hall::SetCommandSwapBuffers();
+
+    Hall::SetColorSource(Hall::MEMORY);
+
+    Print("Ich wurde gestartet");
     __init_data();
 	__libc_init_array();
 
+    char buffer[64];
+
+    Print("Jumping to main:");
 	main();
+    Print("Finished main?");
 
 	while(1);
 }

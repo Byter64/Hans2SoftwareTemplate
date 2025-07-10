@@ -39,6 +39,7 @@ if(NOT DESKTOPBUILD)
   target_sources(${FINAL_TARGET} PUBLIC
   PUBLIC ${WUEHANS_ROOT}/wuehans/start.s
   PUBLIC ${WUEHANS_ROOT}/wuehans/start.cpp
+  PUBLIC ${WUEHANS_ROOT}/wuehans/Debug.cpp
   PUBLIC ${WUEHANS_ROOT}/wuehans/syscall.c
   )
 

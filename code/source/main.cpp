@@ -2,20 +2,23 @@
 #include "Halib/Graphic.h"
 #include "Halib/System.h"
 #include "Character.h"
+#include "Debug.h"
 
 int main() 
 {
 	Halib::Init();
-
+	Print("Reached main");
 	//Create a player and add it to the system.
 	//Entities will only be updated and drawn, when they have been added via AddEntity(...)
 	std::shared_ptr<Character> player = std::make_shared<Character>(50.0f);
-	Halib::AddEntity(player);
+	//Halib::AddEntity(player);
 
 	//We have 5 Bits per color channel, so 31 is the max value
 	Halib::rendersystem.backgroundColor = Halib::Color(15, 0, 24);
 	while(!Halib::GetShouldClose()) 
 	{
+		Halib::rendersystem.backgroundColor.SetGreen((Halib::rendersystem.backgroundColor.GetGreen() + 1) % 32);
+		
 		//Normally, you don't need to touch this loop. Just let your classes inherit from Entity
 		//to build your game (see Character.h)
 
