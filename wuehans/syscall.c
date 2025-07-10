@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <sys/stat.h>
-
+#include "Debug.h"
 void *__dso_handle = 0;
 
 const TCHAR STDOUT[30] = "stdout.txt";
@@ -121,22 +121,30 @@ int _lseek(int fd, int offset, int whence) {
 }
 
 int _open(const char *name, int flags, int mode) {
-  if (is_mounted == 0) {
+  Print("_open start");
+  if (is_mounted == 0) 
+  {
+    Print("Vor f_unmount");
+    f_unmount("");
+    Print("Vorf_mount");
     f_mount(&FatFs, "", 0);
     is_mounted = 1;
   }
-
+  Print("Nach f_mount");
+  
   int i;
   for (i = 0; i < FILE_AMOUNT; i++) {
     if (fd_data[i].is_open == 1) {
       // Entry already in use
       continue;
     }
-
+    Print("Leeres fd_data gefunden");
+    
     FRESULT fr = f_open(&fd_data[i].fp, name, mode);
     if (fr != FR_OK) {
       return -1;
     }
+    Print("Nach f_open");
 
     fd_data[i].mode = mode;
     fd_data[i].is_open = 1;
