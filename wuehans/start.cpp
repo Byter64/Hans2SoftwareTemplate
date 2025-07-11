@@ -1,5 +1,5 @@
 //What comes after start.s? Right, start.c
-
+#include <Hall/Hall.h>
 typedef void (*constructor_t)(void);
 
 extern unsigned int _sbss;
@@ -37,10 +37,21 @@ int main();
 
 void _main()
 {
+    Hall::Clear(0b1111111111111111);
+    while(Hall::GetIsGPUBusy());
+    Hall::SetCommandSwapBuffers();
+
+    Hall::Clear(0b1111111111111111);
+    while(Hall::GetIsGPUBusy());
+    Hall::SetCommandSwapBuffers();
+
+    Hall::SetColorSource(Hall::MEMORY);
+
     __init_data();
 	__libc_init_array();
 
-	main();
+    char buffer[64];
 
+	main();
 	while(1);
 }
