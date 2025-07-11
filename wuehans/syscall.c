@@ -116,7 +116,8 @@ int _lseek(int fd, int offset, int whence) {
   }
 
   FRESULT result = f_lseek(&fd_data[fd-3].fp, ofs);
-  return result;
+  if(result) return -1;
+  return ofs;
 }
 
 int _open(const char *name, int flags, int mode) {
@@ -146,8 +147,7 @@ int _open(const char *name, int flags, int mode) {
       printf("\n");
       return -1;
     }
-    printf("Succeded opening: %s\n", name);
-    printf("\n");
+    printf("wueHans: Succeeded opening: %s\n", name);
     fd_data[i].mode = mode;
     fd_data[i].is_open = 1;
     // Exclude stdout, stderr, stdin
