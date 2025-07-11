@@ -126,6 +126,11 @@ int _open(const char *name, int flags, int mode) {
     f_mount(&FatFs, "", 0);
     is_mounted = 1;
   }
+  //Flag actually contains the r/b/append whatever shit
+
+  //mode is always 438 (octal 0666) so we just set ff_mode to the same
+  //Note: this will not ignore append modes and such
+  BYTE ff_mode = FA_READ | FA_WRITE;
   
   int i;
   for (i = 0; i < FILE_AMOUNT; i++) {
@@ -134,11 +139,15 @@ int _open(const char *name, int flags, int mode) {
       continue;
     }
     
-    FRESULT fr = f_open(&fd_data[i].fp, name, mode);
+    FRESULT fr = f_open(&fd_data[i].fp, name, ff_mode);
     if (fr != FR_OK) {
+      printf("Failed opening %s\n", name);
+      printf("Error: %i\n", fr);
+      printf("\n");
       return -1;
     }
-
+    printf("Succeded opening: %s\n", name);
+    printf("\n");
     fd_data[i].mode = mode;
     fd_data[i].is_open = 1;
     // Exclude stdout, stderr, stdin
