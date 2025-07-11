@@ -1,8 +1,7 @@
 #include <memory>
-#include "Halib/Graphic.h"
-#include "Halib/System.h"
+#include "Halib/Halib.h"
 #include "Character.h"
-#include <iostream>
+#include "Rect.h"
 
 int main() 
 {
@@ -11,6 +10,10 @@ int main()
 	//Entities will only be updated and drawn, when they have been added via AddEntity(...)
 	std::shared_ptr<Character> player = std::make_shared<Character>(50.0f);
 	Halib::AddEntity(player);
+
+	std::shared_ptr<Rect> greenRect = std::make_shared<Rect>(40, 40, Halib::Color(0, 31, 5));
+	greenRect->SetPosition(Halib::Vec3(40, 40, 0));
+	Halib::AddEntity(greenRect);
 
 	//We have 5 Bits per color channel, so 31 is the max value
 	Halib::rendersystem.backgroundColor = Halib::Color(15, 0, 24);
