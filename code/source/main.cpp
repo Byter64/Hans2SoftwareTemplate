@@ -1,7 +1,7 @@
 #include <memory>
 #include "Halib/Halib.h"
 #include "Character.h"
-#include "Rect.h"
+#include "Halib/Graphic.h"
 
 int main() 
 {
@@ -11,8 +11,7 @@ int main()
 	std::shared_ptr<Character> player = std::make_shared<Character>(50.0f);
 	Halib::AddEntity(player);
 
-	std::shared_ptr<Rect> greenRect = std::make_shared<Rect>(40, 40, Halib::Color(0, 31, 5));
-	greenRect->SetPosition(Halib::Vec3(40, 40, 0));
+	std::shared_ptr<Halib::Rect> greenRect = std::make_shared<Halib::Rect>(Halib::VecI2(35, 60), Halib::VecI2(40, 80), Halib::Color(0, 31, 5));
 	Halib::AddEntity(greenRect);
 
 	//We have 5 Bits per color channel, so 31 is the max value

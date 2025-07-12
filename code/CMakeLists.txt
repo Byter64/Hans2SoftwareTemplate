@@ -68,7 +68,6 @@ target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
   "source/main.cpp"
   "source/Character.cpp"
-  "source/Rect.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)
