@@ -44,7 +44,8 @@ if(NOT DESKTOPBUILD)
 	  -nostdlib
 	  -fno-unwind-tables
 	  -fno-rtti
-	  -march=rv32im
+	  -march=rv32imf
+      -mabi=ilp32f
 	  -Os
 	  #-ffreestanding  #Because we use libstdc++, we need to pretend that we are in a hosted environment so that gcc gives us all features of libstdc++
 	  -Bstatic
