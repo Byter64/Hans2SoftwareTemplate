@@ -29,7 +29,7 @@ endif()
 include(FetchContent)
 FetchContent_Declare(Halib
     GIT_REPOSITORY https://github.com/byter64/Halib.git
-    GIT_TAG v3.1
+    GIT_TAG develop
 )
 FetchContent_MakeAvailable(Halib)
 
@@ -45,7 +45,7 @@ if(NOT DESKTOPBUILD)
 	  -fno-rtti
 	  -march=rv32imf
       -mabi=ilp32f
-	  -Os
+	  -O3
 	  #-ffreestanding  #Because we use libstdc++, we need to pretend that we are in a hosted environment so that gcc gives us all features of libstdc++
 	  -Bstatic
 	  -nostdinc

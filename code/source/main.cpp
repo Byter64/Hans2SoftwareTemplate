@@ -1,32 +1,24 @@
 #include <memory>
-#include "Halib/Halib.h"
-#include "Character.h"
-#include "Halib/Graphic.h"
+#include "Engine.h"
+#include "GlobalGameEvents.h"
+#include "MainScene.h"
 
-int main() 
+void OnStartGame(int screenWidth, int screenHeight)
 {
-	Halib::Init();
-	//Create a player and add it to the system.
-	//Entities will only be updated and drawn, when they have been added via AddEntity(...)
-	std::shared_ptr<Character> player = std::make_shared<Character>(50.0f);
-	Halib::AddEntity(player);
+	sceneManager->LoadScene<MainScene>();
+}
 
-	std::shared_ptr<Halib::Rect> greenRect = std::make_shared<Halib::Rect>(Halib::VecI2(35, 60), Halib::VecI2(40, 80), Halib::Color(0, 31, 5));
-	Halib::AddEntity(greenRect);
+void Update(float deltaTime)
+{
 
-	//We have 5 Bits per color channel, so 31 is the max value
-	Halib::rendersystem.backgroundColor = Halib::Color(15, 0, 24);
-	while(!Halib::GetShouldClose()) 
-	{
-		Halib::rendersystem.backgroundColor.SetGreen((Halib::rendersystem.backgroundColor.GetGreen() + 1) % 32);
-		
-		//Normally, you don't need to touch this loop. Just let your classes inherit from Entity
-		//to build your game (see Character.h)
+}
 
-		//This updates all halibs system, including inputs, graphics and entity logic
-		//Take a look: Select Update() and press F12(?)
-		Halib::Update();
-	}
-	
-	return 0;
+void UpdateWithoutPause()
+{
+
+}
+
+void OnEndGame()
+{
+
 }
