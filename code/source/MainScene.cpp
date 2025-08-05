@@ -40,6 +40,9 @@ void MainScene::OnStart()
 
 	Animation& animation = ecsSystem->AddComponent<Animation>(player);
 	animation.animationDirection = Animation::RIGHT;
+	animation.animationFrameCount = 8;
+	animation.frameCount = glm::ivec2(8, 1);
+	animation.animationStartIndex = glm::ivec2(0, 0);
 
 	PlayerController& controller = ecsSystem->AddComponent<PlayerController>(player);
 	controller.speed = 50.0f;
