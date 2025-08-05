@@ -15,6 +15,7 @@ void MainScene::OnStart()
     playerSystemSignature.set(ecsSystem->GetComponentType<Transform>());
     playerSystemSignature.set(ecsSystem->GetComponentType<PlayerController>());
     playerSystemSignature.set(ecsSystem->GetComponentType<Animator>());
+    playerSystemSignature.set(ecsSystem->GetComponentType<Animation>());
     ecsSystem->AddSystemSignature<PlayerSystem>(playerSystemSignature);
 
 
@@ -36,6 +37,9 @@ void MainScene::OnStart()
 	animator.framesPerSecond = 10;
 	animator.isPlaying = false;
 	animator.timer = 0;
+
+	Animation& animation = ecsSystem->AddComponent<Animation>(player);
+	animation.animationDirection = Animation::RIGHT;
 
 	PlayerController& controller = ecsSystem->AddComponent<PlayerController>(player);
 	controller.speed = 50.0f;
