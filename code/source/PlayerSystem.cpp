@@ -38,7 +38,7 @@ void PlayerSystem::Update(float deltaTime)
 		if(delta.x != 0) 
 		{
 			glm::vec2 scale = transform.GetScale();
-			scale.x = delta.x > 0 ? 1 : -1;
+			scale.x = delta.x > 0 ? -1 : 1;
 			transform.SetScale(scale);
 		}
 
