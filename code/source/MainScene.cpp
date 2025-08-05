@@ -19,6 +19,9 @@ void MainScene::OnStart()
 
 
 	player = ecsSystem->CreateEntity();
+
+	Transform& transform = ecsSystem->AddComponent<Transform>(player);
+	transform.SetTranslation(glm::vec2(0));
 	
 	SpriteRenderer& renderer = ecsSystem->AddComponent<SpriteRenderer>(player);
 	renderer.ctType = Hall::CTType::NONE;
