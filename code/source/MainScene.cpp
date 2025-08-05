@@ -9,7 +9,10 @@ std::shared_ptr<PlayerSystem> playerSystem;
 
 void MainScene::OnStart()
 {
+	//Register a custom component
 	ecsSystem->RegisterComponent<PlayerController>();
+
+	//Register a custom system and set the components an entity needs to be processed by that system
 	playerSystem = ecsSystem->RegisterSystem<PlayerSystem>();
 	Signature playerSystemSignature;
     playerSystemSignature.set(ecsSystem->GetComponentType<Transform>());
@@ -19,6 +22,7 @@ void MainScene::OnStart()
     ecsSystem->AddSystemSignature<PlayerSystem>(playerSystemSignature);
 
 
+	//Create Entity and its components
 	player = ecsSystem->CreateEntity();
 
 	Transform& transform = ecsSystem->AddComponent<Transform>(player);
