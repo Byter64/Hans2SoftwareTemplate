@@ -25,6 +25,9 @@ void MainScene::OnStart()
 	//Create Entity and its components
 	player = ecsSystem->CreateEntity();
 
+	Name& name = ecsSystem->AddComponent<Name>(player);
+	name = "Player";
+
 	Transform& transform = ecsSystem->AddComponent<Transform>(player);
 	transform.SetTranslation(glm::vec2(0));
 	
