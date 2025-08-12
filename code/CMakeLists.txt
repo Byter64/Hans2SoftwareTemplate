@@ -69,6 +69,8 @@ target_sources(${FINAL_TARGET} PUBLIC
   "source/main.cpp"
   "source/MainScene.cpp"
   "source/PlayerSystem.cpp"
+  "source/FollowerSystem.cpp"
+  "source/Systems.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)

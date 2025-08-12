@@ -2,5 +2,5 @@
 
 struct PlayerController
 {
-	float speed;
+	static constexpr float SPEED = 50;
 };

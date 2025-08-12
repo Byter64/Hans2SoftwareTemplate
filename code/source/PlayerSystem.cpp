@@ -29,7 +29,7 @@ void PlayerSystem::Update(float deltaTime)
 		if(Input::GetButtonPressed(0, Input::Button::DOWN)) delta.y++;
 
 		//Add the position delta to the position
-		transform.AddTranslation(glm::vec2(delta) * deltaTime * controller.speed);
+		transform.AddTranslation(glm::vec2(delta) * deltaTime * PlayerController::SPEED);
 
 		//The character should only animate, if he is moving
 		animator.isPlaying = delta != glm::ivec2(0);

@@ -1,36 +1,46 @@
 #include "MainScene.h"
-#include "PlayerSystem.h"
+#include "Systems.h"
 #include "PlayerController.h"
+#include "Follower.h"
+
 
 using namespace Engine;
 
-Entity player;
-std::shared_ptr<PlayerSystem> playerSystem;
 
 void MainScene::OnStart()
 {
-	//Register a custom component
-	ecsSystem->RegisterComponent<PlayerController>();
+	player = CreatePlayer();
+	followers.push_back(CreateFollower(player));
+	followers.push_back(CreateFollower(followers[0]));
+}
 
-	//Register a custom system and set the components an entity needs to be processed by that system
-	playerSystem = ecsSystem->RegisterSystem<PlayerSystem>();
-	Signature playerSystemSignature;
-    playerSystemSignature.set(ecsSystem->GetComponentType<Transform>());
-    playerSystemSignature.set(ecsSystem->GetComponentType<PlayerController>());
-    playerSystemSignature.set(ecsSystem->GetComponentType<Animator>());
-    playerSystemSignature.set(ecsSystem->GetComponentType<Animation>());
-    ecsSystem->AddSystemSignature<PlayerSystem>(playerSystemSignature);
+void MainScene::OnUpdate(float deltaTime)
+{
+	playerSystem->Update(deltaTime);
+	followerSystem->Update(deltaTime);
+}
 
+void MainScene::OnUpdateWithoutPause()
+{
 
+}
+
+void MainScene::OnEnd()
+{
+
+}
+
+Entity MainScene::CreatePlayer()
+{
 	//Create Entity and its components
-	player = ecsSystem->CreateEntity();
+	player = CreateEntity();
 
 	Name& name = ecsSystem->AddComponent<Name>(player);
 	name = "Player";
 
 	Transform& transform = ecsSystem->AddComponent<Transform>(player);
-	transform.SetTranslation(glm::vec2(0));
-	
+	transform.SetTranslation(glm::vec2(100, 100));
+
 	SpriteRenderer& renderer = ecsSystem->AddComponent<SpriteRenderer>(player);
 	renderer.ctType = Hall::CTType::NONE;
 	renderer.image = std::make_shared<Image>(Files::ASSETS / "Mushroom-Run.bmp");
@@ -52,20 +62,23 @@ void MainScene::OnStart()
 	animation.animationStartIndex = glm::ivec2(0, 0);
 
 	PlayerController& controller = ecsSystem->AddComponent<PlayerController>(player);
-	controller.speed = 50.0f;
+
+	return player;
 }
 
-void MainScene::OnUpdate(float deltaTime)
+Entity MainScene::CreateFollower(Entity hauntedEntity)
 {
-	playerSystem->Update(deltaTime);
-}
+	Entity entity = CreateEntity();
 
-void MainScene::OnUpdateWithoutPause()
-{
+	Transform& transform = ecsSystem->AddComponent<Transform>(entity);
+	transform.SetGlobalTranslation(glm::vec2(-100, -100));
+	
+	Follower& follower = ecsSystem->AddComponent<Follower>(entity);
+	follower.hauntedEntity = hauntedEntity;
 
-}
+	RectangleRenderer& renderer = ecsSystem->AddComponent<RectangleRenderer>(entity);
+	renderer.size = glm::ivec2(20, 20);
+	renderer.color = Color(10, 15, 20);
 
-void MainScene::OnEnd()
-{
-
+	return entity;
 }
