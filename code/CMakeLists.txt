@@ -67,6 +67,7 @@ target_include_directories(${FINAL_TARGET}
 target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
   "source/main.cpp"
+  "source/TitleScene.cpp"
   "source/MainScene.cpp"
   "source/PlayerSystem.cpp"
   "source/FollowerSystem.cpp"
