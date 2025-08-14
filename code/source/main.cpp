@@ -3,7 +3,7 @@
 #include "GlobalGameEvents.h"
 
 #include "Systems.h"
-#include "MainScene.h"
+#include "TitleScene.h"
 #include "PlayerController.h"
 #include "PlayerSystem.h"
 #include "Follower.h"
@@ -16,7 +16,7 @@ static void RegisterToECS();
 void OnStartGame(int screenWidth, int screenHeight)
 {
 	RegisterToECS();
-	sceneManager->LoadScene<MainScene>();
+	sceneManager->LoadScene<TitleScene>();
 }
 
 void Update(float deltaTime)
