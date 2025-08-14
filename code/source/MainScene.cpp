@@ -12,6 +12,7 @@ void MainScene::OnStart()
 	player = CreatePlayer();
 	followers.push_back(CreateFollower(player));
 	followers.push_back(CreateFollower(followers[0]));
+	followers.push_back(CreateFollower(followers[1]));
 }
 
 void MainScene::OnUpdate(float deltaTime)
@@ -41,7 +42,7 @@ Entity MainScene::CreatePlayer()
 	Transform& transform = ecsSystem->AddComponent<Transform>(player);
 	transform.SetTranslation(glm::vec2(100, 100));
 
-	SpriteRenderer& renderer = ecsSystem->AddComponent<SpriteRenderer>(player);
+	Sprite& renderer = ecsSystem->AddComponent<Sprite>(player);
 	renderer.ctType = Hall::CTType::NONE;
 	renderer.image = std::make_shared<Image>(Files::ASSETS / "Mushroom-Run.bmp");
 	renderer.isActive = true;
@@ -76,8 +77,9 @@ Entity MainScene::CreateFollower(Entity hauntedEntity)
 	Follower& follower = ecsSystem->AddComponent<Follower>(entity);
 	follower.hauntedEntity = hauntedEntity;
 
-	RectangleRenderer& renderer = ecsSystem->AddComponent<RectangleRenderer>(entity);
-	renderer.size = glm::ivec2(20, 20);
+	Rectangle& renderer = ecsSystem->AddComponent<Rectangle>(entity);
+	renderer.size.x = (rand() % 10) + 5;
+	renderer.size.y = (rand() % 10) + 5;
 	renderer.color = Color(10, 15, 20);
 
 	return entity;

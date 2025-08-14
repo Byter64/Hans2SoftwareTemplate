@@ -21,14 +21,18 @@ void FollowerSystem::Update(float deltaTime)
 		Follower& follower = ecsSystem->GetComponent<Follower>(entity);
 		Transform& hauntedTransform = ecsSystem->GetComponent<Transform>(follower.hauntedEntity);
 
+		int oldPointer = follower.queuePointer == 0 ? Follower::QUEUE_SIZE - 1 : follower.queuePointer - 1;
+		glm::vec2 newPos = follower.positionQueue[oldPointer];
+		glm::vec2 distance = hauntedTransform.GetGlobalTranslation() - newPos;
+		glm::vec2 direction = glm::normalize(distance);
+		if (direction != direction)
+			direction = glm::vec2();
+
 
 		transform.SetGlobalTranslation(follower.positionQueue[follower.queuePointer]);
 
-
-		glm::vec2 distance = transform.GetGlobalTranslation() - hauntedTransform.GetGlobalTranslation();
-		glm::vec2 newPos = transform.GetGlobalTranslation();
 		if (glm::length(distance) > Follower::TOLERANCE_RADIUS)
-			newPos += glm::normalize(distance) * Follower::SPEED;
+			newPos += direction * Follower::SPEED * deltaTime;
 		follower.positionQueue[follower.queuePointer] = newPos;
 
 
