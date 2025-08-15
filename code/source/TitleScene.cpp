@@ -24,13 +24,15 @@ void TitleScene::OnStart()
 	Systems::renderSystem->backgroundColor = Color(0, 0, 0);
 
 	flashLogo = CreateEntity();
-	ecsSystem->AddComponent<Transform>(flashLogo).SetTranslation(glm::vec2(100, 90));
+	ecsSystem->AddComponent<Name>(flashLogo) = "Flash Logo";
+	ecsSystem->AddComponent<Transform>(flashLogo).SetTranslation(glm::vec2(200, 90));
 	Sprite& sprite = ecsSystem->AddComponent<Sprite>(flashLogo);
 	sprite.image = std::make_shared<Image>("assets/byterLogo.bmp");
 	sprite.size = glm::ivec2(sprite.image->GetWidth(), sprite.image->GetHeight());
 
 	titleText = CreateEntity();
-	ecsSystem->AddComponent<Transform>(titleText).SetTranslation(glm::vec2(125, 150));
+	ecsSystem->AddComponent<Name>(titleText) = "Title Text";
+	ecsSystem->AddComponent<Transform>(titleText).SetTranslation(glm::vec2(125, 155));
 	Text& text = ecsSystem->AddComponent<Text>(titleText);
 	text.text = "A Byte-Intensive Production";
 	text.color = Color(31, 31, 31);
@@ -40,7 +42,6 @@ void TitleScene::OnStart()
 void TitleScene::OnUpdate(float deltaTime)
 {
 	timer -= deltaTime;
-	//I want a sound here :(
 	if (timer <= 0)
 	{
 		timer = TIME;

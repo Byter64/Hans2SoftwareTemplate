@@ -6,8 +6,8 @@ struct TitleScene : public Engine::Scene
 	Engine::Entity flashLogo;
 	Engine::Entity titleText;
 	std::shared_ptr<Engine::Font> titleFont;
-	static constexpr float TIME = 3.0f;
-	float timer = TIME;
+	static constexpr float TIME = 0.7f;
+	float timer = 3.0f;
 	int darkenCounter = 0;
 
 	void DarkenColor(Engine::Color& color);
