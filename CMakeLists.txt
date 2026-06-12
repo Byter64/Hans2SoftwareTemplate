@@ -26,12 +26,19 @@ if(NOT DESKTOPBUILD)
   )
 endif()
 
+#include(FetchContent)
+#FetchContent_Declare(Halib
+#    GIT_REPOSITORY https://github.com/byter64/Halib.git
+#    GIT_TAG v3.1
+#)
+#FetchContent_MakeAvailable(Halib)
+
 include(FetchContent)
-FetchContent_Declare(Halib
-    GIT_REPOSITORY https://github.com/byter64/Halib.git
-    GIT_TAG v3.1
+FetchContent_Declare(Hall
+	GIT_REPOSITORY "https://github.com/Byter64/Hall"
+	GIT_TAG main
 )
-FetchContent_MakeAvailable(Halib)
+FetchContent_MakeAvailable(Hall)
 
 if(NOT DESKTOPBUILD)
 	add_subdirectory(lib)

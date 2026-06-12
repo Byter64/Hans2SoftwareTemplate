@@ -33,7 +33,7 @@ if(NOT DESKTOPBUILD)
   ${WUEHANS_ROOT}/lib/libstdc++.a
   ${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
-  Halib
+  Hall
   )
 
   target_sources(${FINAL_TARGET} PUBLIC
@@ -46,7 +46,7 @@ if(NOT DESKTOPBUILD)
 
 else()
   target_link_libraries(${FINAL_TARGET}
-  Halib_Desktop
+  Hall_Desktop
   )
 
   target_compile_definitions(${FINAL_TARGET} PRIVATE DESKTOP)
@@ -63,11 +63,10 @@ target_include_directories(${FINAL_TARGET}
 #███████████████████████████████████████████████████████████
 #███████████████████████████████████████████████████████████
 
+file(GLOB sources "source/*.cpp" "source/*.c")
 
 target_sources(${FINAL_TARGET} PUBLIC
-  # Add your .cpp files here
-  "source/main.cpp"
-  "source/Character.cpp"
+  ${sources}
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)
